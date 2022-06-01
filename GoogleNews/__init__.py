@@ -189,6 +189,9 @@ class GoogleNews:
                 self.__links.append(tmp_link)
                 results.append({'title': tmp_text, 'media': tmp_media,'date': tmp_date,'datetime':define_date(tmp_date),'desc': tmp_desc, 'link': tmp_link,'img': tmp_img})
             self.response.close()
+        except urllib.request.HTTPError as e:
+            if e.code == 404:
+                raise
         except Exception as e_parser:
             print(e_parser)
             pass
